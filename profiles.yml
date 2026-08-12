@@ -1,0 +1,10 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DBT_DUCKDB_PATH', 'dbt_tests.duckdb') }}"
+      # Matches the `schema:` on the `raw` source in models/staging/_source.yml,
+      # so `dbt seed` lands the raw_* tables where the sources expect them.
+      schema: dbt_awye
+      threads: 4
